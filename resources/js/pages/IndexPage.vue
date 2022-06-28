@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <h1>{{ title }}</h1>
-        <router-link :to="{ name: ROUTE_NAME.MAIN_TEST }">Link</router-link>
-    </div>
+    <banner-section />
+    <accomodation-section />
+    <facilities-section />
+    <about-section />
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue';
-import { ROUTE_NAME } from '@/router'
-const title = ref('IndexPage');
+import AccomodationSection from '@/components/sections/AccomodationSection.vue';
+import BannerSection from '@/components/sections/BannerSection.vue';
+import FacilitiesSection from '@/components/sections/FacilitiesSection.vue';
+import AboutSection from '@/components/sections/AboutSection.vue';
 </script>
