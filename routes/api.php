@@ -19,10 +19,13 @@ Route::prefix('users')->group(function () {
  * -----------------------------------------
  */
 
-Route::prefix('bookings')->middleware(['auth:sanctum'])->group(function () {
-    Route::get('', [BookingController::class, 'list']);
-    Route::post('', [BookingController::class, 'create']);
+Route::prefix('bookings')->group(function () {
     Route::get('report', [BookingController::class, 'findByReportCode']);
-    Route::patch('{id}', [BookingController::class, 'update']);
-    Route::delete('{id}', [BookingController::class, 'remove']);
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::get('', [BookingController::class, 'list']);
+        Route::post('', [BookingController::class, 'create']);
+        Route::patch('{id}', [BookingController::class, 'update']);
+        Route::delete('{id}', [BookingController::class, 'remove']);
+    });
 });
