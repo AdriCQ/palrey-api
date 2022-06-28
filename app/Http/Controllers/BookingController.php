@@ -113,6 +113,11 @@ class BookingController extends Controller
         $validator = $validator->validate();
         $model = Booking::find($id);
         if (!$model) return response()->json(['No se pudo encontrar'], 400, [], JSON_NUMERIC_CHECK);
+        if (isset($validator['date'])) {
+            $validator['date_from'] = Carbon::make($validator['date']['from']);
+            $validator['date_to'] = Carbon::make($validator['date']['to']);
+            unset($validator['date']);
+        }
         return $model->update($validator)
             ? new BookingResource($model)
             : response()->json(['No se pudo guardar la reserva'], 502, [], JSON_NUMERIC_CHECK);
