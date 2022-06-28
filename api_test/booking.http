@@ -1,0 +1,36 @@
+### GET
+GET /api/bookings HTTP/1.1
+Host: {{ host }}
+
+### CREATE
+POST /api/bookings HTTP/1.1
+Host: {{ host }}
+
+{
+    "first_name": "Adrian",
+    "last_name": "capote",
+    "email": "acq95@nauta.cu",
+    "phone": "53336521",
+    "address": "Calle silencio #32",
+    "passport": "656165465",
+    "date": {
+        "from": "2022/06/09",
+        "to": "2022/06/19"
+    },
+    "currency": "USD",
+    "price": 250,
+    "airline_name": "Aur",
+    "airline_fly": "22",
+    "room_type": "Simple",
+    "comments": "Comentario"
+}
+
+### GET REPORT
+GET /api/bookings/report HTTP/1.1
+Host: {{ host }}
+
+{
+    "code": "1|$2y$10$KEUuk0.VY6fASlUvSqtK4O1lu7Y9f.vzNxzRmaZtf07VqM6pdKHYi"
+}
+
+
