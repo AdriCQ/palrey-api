@@ -15,6 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $acq = new User(
+            [
+                'name' => 'Adrian Capote Quintana',
+                'email' => 'adriancapote95@gmail.com',
+                'password' => bcrypt('adriancapote95')
+            ]
+        );
+        $acq->save();
         $user = new User(
             [
                 'name' => 'Homero F. Palmero',
