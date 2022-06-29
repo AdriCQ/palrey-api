@@ -21,7 +21,6 @@
 <body>
     <div id="app">
         <h1>Default Vue app</h1>
-        <index-page />
     </div>
 
     <script src="{{ asset(mix('js/app.js'), true) }}"></script>

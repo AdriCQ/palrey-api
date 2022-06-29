@@ -13,4 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/{any}', 'home')->where('any', '.*');
+// Route::get('', function () {
+//     return redirect()->route('ui', ['any' => '/']);
+// });
+
+
+// Route::view('ui/{any}', 'home')->name('ui');
