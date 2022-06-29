@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
-    <title>Document</title>
+    <title>Rentas | PalRey</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('gui/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('gui/vendors/linericon/style.css') }}">
