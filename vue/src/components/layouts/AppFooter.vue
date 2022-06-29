@@ -2,19 +2,19 @@
   <footer class="footer-area section_gap">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3  col-md-6 col-sm-6">
+        <div class="col-lg-4  col-md-6 col-sm-6">
           <div class="single-footer-widget">
             <h6 class="footer_title">
-              About Agency
+              Rentas PalRey
             </h6>
-            <p>
+            <p class="text-justify">
               The world has become so fast paced that people don’t want to stand by reading a page of
               information, they would much rather look at a presentation and understand the message. It
               has come to a point
             </p>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <!-- <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="single-footer-widget">
             <h6 class="footer_title">
               Navigation Links
@@ -38,8 +38,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        </div> -->
+        <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="single-footer-widget">
             <h6 class="footer_title">
               Newsletter
@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="single-footer-widget instafeed">
             <h6 class="footer_title">
               InstaFeed
@@ -100,10 +100,12 @@
       </div>
       <div class="border_line" />
       <div class="row footer-bottom d-flex justify-content-between align-items-center">
-        <p class="col-lg-8 col-sm-12 footer-text m-0">
+        <p class="col-lg-8 col-sm-12 footer-text m-0 text-center">
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          Copyright &copy; {{ new Date().getFullYear() }} All rights reserved | This template is made with <i
-            class="fa fa-heart-o" aria-hidden="true" /> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+          Copyright &copy; {{ new Date().getFullYear() }} All rights reserved <br>
+          <a href="https://palrey.com" target="_blank">Servicios PalRey</a> |
+          <a href="https://servimav.com" target="_blank">SERVIMAV S.R.L.</a> |
+          <a href="https://colorlib.com" target="_blank">Colorlib</a>
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </p>
         <div class="col-lg-4 col-sm-12 footer-social">

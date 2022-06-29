@@ -1,15 +1,10 @@
 <template>
   <section class="facilities_area section_gap">
-    <div
-      class="overlay bg-parallax"
-      data-stellar-ratio="0.8"
-      data-stellar-vertical-offset="0"
-      data-background=""
-    />
+    <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="" />
     <div class="container">
       <div class="section_title text-center">
         <h2 class="title_w">
-          Royal Facilities
+          ¿Por qué escogernos?
         </h2>
         <p>Who are in extremely love with eco friendly system.</p>
       </div>
