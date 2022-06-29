@@ -9,7 +9,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="accomodation_item text-center">
                         <div class="hotel_img">
-                            <img src="image/room1.jpg" alt="">
+                            <img src="/image/room1.jpg" alt="">
                             <a href="#" class="btn theme_btn button_hover">Book Now</a>
                         </div>
                         <a href="#">
@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="accomodation_item text-center">
                         <div class="hotel_img">
-                            <img src="image/room2.jpg" alt="">
+                            <img src="/image/room2.jpg" alt="">
                             <a href="#" class="btn theme_btn button_hover">Book Now</a>
                         </div>
                         <a href="#">
@@ -33,7 +33,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="accomodation_item text-center">
                         <div class="hotel_img">
-                            <img src="image/room3.jpg" alt="">
+                            <img src="/image/room3.jpg" alt="">
                             <a href="#" class="btn theme_btn button_hover">Book Now</a>
                         </div>
                         <a href="#">
@@ -45,7 +45,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="accomodation_item text-center">
                         <div class="hotel_img">
-                            <img src="image/room4.jpg" alt="">
+                            <img src="/image/room4.jpg" alt="">
                             <a href="#" class="btn theme_btn button_hover">Book Now</a>
                         </div>
                         <a href="#">
