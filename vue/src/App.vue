@@ -1,7 +1,7 @@
 <template>
-    <app-header />
-    <router-view />
-    <app-footer />
+  <app-header />
+  <router-view />
+  <app-footer />
 </template>
 
 <script setup lang='ts'>

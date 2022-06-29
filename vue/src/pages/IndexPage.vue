@@ -1,8 +1,8 @@
 <template>
-    <banner-section />
-    <accomodation-section />
-    <facilities-section />
-    <about-section />
+  <banner-section />
+  <accomodation-section />
+  <facilities-section />
+  <about-section />
 </template>
 
 <script setup lang='ts'>
