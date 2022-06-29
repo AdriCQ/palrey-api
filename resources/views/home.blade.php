@@ -24,7 +24,7 @@
         <index-page />
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset(mix('js/app.js'), true) }}"></script>
 
      <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
