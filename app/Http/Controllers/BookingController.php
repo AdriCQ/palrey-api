@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BookingResource;
 use App\Models\Booking;
+use App\Models\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,7 @@ class BookingController extends Controller
             'price' => ['required', 'numeric'],
             'airline_name' => ['required', 'string', 'max:64'],
             'airline_fly' => ['required', 'string', 'max:32'],
-            'room_type' => ['required', 'string', 'max:32'],
+            'room_id' => ['required', 'integer'],
             'comments' => ['nullable', 'string'],
         ]);
         if ($validator->fails()) {
@@ -42,6 +43,9 @@ class BookingController extends Controller
         $validator['date_from'] = Carbon::make($validator['date']['from']);
         $validator['date_to'] = Carbon::make($validator['date']['to']);
         unset($validator['date']);
+        $room = Room::find($validator['room_id']);
+        if (!$room) return response()->json(['Habitacion no encontrada'], 400, [], JSON_NUMERIC_CHECK);
+        $validator['room_type'] = $room->type;
         $model = new Booking($validator);
         return $model->save()
             ? new BookingResource($model)

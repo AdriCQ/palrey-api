@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,6 @@ Route::prefix('users')->group(function () {
  *	Booking Routes
  * -----------------------------------------
  */
-
 Route::prefix('bookings')->group(function () {
     Route::get('report', [BookingController::class, 'findByReportCode']);
 
@@ -28,4 +28,18 @@ Route::prefix('bookings')->group(function () {
         Route::patch('{id}', [BookingController::class, 'update']);
         Route::delete('{id}', [BookingController::class, 'remove']);
     });
+});
+
+/**
+ * -----------------------------------------
+ *	Rooms Routes
+ * -----------------------------------------
+ */
+Route::prefix('rooms')->middleware(['auth:sanctum'])->group(function () {
+    Route::get('', [RoomController::class, 'list']);
+    Route::post('', [RoomController::class, 'create']);
+    Route::post('available', [RoomController::class, 'listAvailable']);
+    Route::get('{id}/available', [RoomController::class, 'available']);
+    Route::patch('{id}', [RoomController::class, 'update']);
+    Route::delete('{id}', [RoomController::class, 'remove']);
 });

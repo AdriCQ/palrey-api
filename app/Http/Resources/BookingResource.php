@@ -32,6 +32,7 @@ class BookingResource extends JsonResource
             'airline_fly' => $this->airline_fly,
             'room_type' => $this->room_type,
             'comments' => $this->comments,
+            'room' => new RoomResource($this->room),
             'report_code' => $this->id . '|' . bcrypt($this->id),
         ];
     }
