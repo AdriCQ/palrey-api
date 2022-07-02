@@ -20,7 +20,7 @@ class Task extends Model
     public static function getFromBooking(Booking $booking)
     {
         return new Task([
-            'message' => $booking->first_name . ' ' . $booking->first_name . '. ' . $booking->comments,
+            'message' => $booking->first_name . ' ' . $booking->last_name . '. ' . $booking->comments,
             'type' => 'Reserva #' . $booking->id,
             'date' => $booking->date_from,
             'completed' => false
