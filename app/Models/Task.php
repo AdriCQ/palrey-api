@@ -13,4 +13,17 @@ class Task extends Model
     protected $casts = ['completed' => 'boolean'];
 
     public $timestamps = false;
+
+    /**
+     * From Booking
+     */
+    public static function getFromBooking(Booking $booking)
+    {
+        return new Task([
+            'message' => $booking->first_name . ' ' . $booking->first_name . '. ' . $booking->comments,
+            'type' => 'Reserva #' . $booking->id,
+            'date' => $booking->date_from,
+            'completed' => false
+        ]);
+    }
 }

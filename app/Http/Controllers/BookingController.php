@@ -50,11 +50,7 @@ class BookingController extends Controller
 
         $model = new Booking($validator);
         if ($model->save()) {
-            $task = new Task([
-                'type' => 'Reserva #' . $model->id,
-                'message' => $model->first_name . ' ' . $model->last_name . '. ' . $model->comments,
-                'date' => $validator['date_from']
-            ]);
+            $task = Task::getFromBooking($model);
             if (!$task->save()) return response()->json(['No se pudo guardar'], 502, [], JSON_NUMERIC_CHECK);
             return new BookingResource($model);
         }
@@ -140,19 +136,18 @@ class BookingController extends Controller
             $validator['date_from'] = Carbon::make($validator['date']['from']);
             $validator['date_to'] = Carbon::make($validator['date']['to']);
             unset($validator['date']);
-            $task = Task::query()->where('type', 'Reserva #' . $model->id)->first();
-            if (!$task) {
-                $task = new Task([
-                    'type' => 'Reserva #' . $model->id,
-                    'message' => $model->first_name . ' ' . $model->last_name . '. ' . $model->comments,
-                    'date' => $validator['date_from']
-                ]);
-                if (!$task->save()) return response()->json(['No se pudo guardar'], 502, [], JSON_NUMERIC_CHECK);
-            }
         }
-        return $model->update($validator)
-            ? new BookingResource($model)
-            : response()->json(['No se pudo guardar la reserva'], 502, [], JSON_NUMERIC_CHECK);
+        if ($model->update($validator)) {
+            $generatedTask = Task::getFromBooking($model);
+            $task = Task::query()->where('type', 'Reserva #' . $model->id)->first();
+            if (!$task && !$generatedTask->save()) {
+                return response()->json(['No se pudo guardar'], 502, [], JSON_NUMERIC_CHECK);
+            } else if (!$task->update($generatedTask->toArray())) {
+                return response()->json(['No se pudo guardar'], 502, [], JSON_NUMERIC_CHECK);
+            }
+            return new BookingResource($model);
+        }
+        return response()->json(['No se pudo guardar la reserva'], 502, [], JSON_NUMERIC_CHECK);
     }
 
     /**
