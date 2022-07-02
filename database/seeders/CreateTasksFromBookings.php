@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Booking;
 use App\Models\Task;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CreateTasksFromBookings extends Seeder
@@ -16,14 +15,8 @@ class CreateTasksFromBookings extends Seeder
      */
     public function run()
     {
-        $tasks = [];
         foreach (Booking::all() as $booking) {
-            array_push($tasks, [
-                'type' => 'Reserva #' . $booking->id,
-                'message' => Task::messageFromBooking($booking),
-                'date' => $booking->date_from,
-                'completed' => false
-            ]);
+            Task::getFromBooking($booking)->save();
         }
     }
 }
