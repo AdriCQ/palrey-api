@@ -12,7 +12,8 @@ Authorization: {{token}}
   "title": "Doble",
   "type": "Doble",
   "capacity": 2,
-  "open": true
+  "open": true,
+  "address": "Mi Address"
 }
 
 ### Available

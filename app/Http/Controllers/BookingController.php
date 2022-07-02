@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BookingResource;
 use App\Models\Booking;
 use App\Models\Room;
+use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ class BookingController extends Controller
      * @param Request request
      * @return Illuminate\Http\JsonResponse
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string', 'max:64'],
@@ -46,17 +47,25 @@ class BookingController extends Controller
         $room = Room::find($validator['room_id']);
         if (!$room) return response()->json(['Habitacion no encontrada'], 400, [], JSON_NUMERIC_CHECK);
         $validator['room_type'] = $room->type;
+
         $model = new Booking($validator);
-        return $model->save()
-            ? new BookingResource($model)
-            : response()->json(['No se pudo guardar la reserva'], 502, [], JSON_NUMERIC_CHECK);
+        if ($model->save()) {
+            $task = new Task([
+                'type' => 'Reserva #' . $model->id,
+                'message' => $model->first_name . ' ' . $model->last_name . '. ' . $model->comments,
+                'date' => $validator['date_from']
+            ]);
+            if (!$task->save()) return response()->json(['No se pudo guardar'], 502, [], JSON_NUMERIC_CHECK);
+            return new BookingResource($model);
+        }
+        return response()->json(['No se pudo guardar la reserva'], 502, [], JSON_NUMERIC_CHECK);
     }
 
     /**
      * list
      * @return Illuminate\Http\JsonResponse
      */
-    public function list()
+    public function index()
     {
         return BookingResource::collection(Booking::query()->orderByDesc('id')->get());
     }
@@ -84,6 +93,16 @@ class BookingController extends Controller
         if (!$model) return response()->json(['No se pudo encontrar'], 400, [], JSON_NUMERIC_CHECK);
         if (!Hash::check($model->id, $explode[1])) return response()->json(['Codigo no coincide'], 400, [], JSON_NUMERIC_CHECK);
         return new BookingResource($model);
+    }
+
+    /**
+     * show
+     * @param int $id
+     * @return Illuminate\Http\JsonResponse
+     */
+    public function show(int $id)
+    {
+        return new BookingResource(Booking::find($id));
     }
 
     /**
@@ -121,6 +140,15 @@ class BookingController extends Controller
             $validator['date_from'] = Carbon::make($validator['date']['from']);
             $validator['date_to'] = Carbon::make($validator['date']['to']);
             unset($validator['date']);
+            $task = Task::query()->where('type', 'Reserva #' . $model->id)->first();
+            if (!$task) {
+                $task = new Task([
+                    'type' => 'Reserva #' . $model->id,
+                    'message' => $model->first_name . ' ' . $model->last_name . '. ' . $model->comments,
+                    'date' => $validator['date_from']
+                ]);
+                if (!$task->save()) return response()->json(['No se pudo guardar'], 502, [], JSON_NUMERIC_CHECK);
+            }
         }
         return $model->update($validator)
             ? new BookingResource($model)
@@ -132,7 +160,7 @@ class BookingController extends Controller
      * @param int $id
      * @return Illuminate\Http\JsonResponse
      */
-    public function remove(int $id)
+    public function destroy(int $id)
     {
         return Booking::find($id) && Booking::find($id)->delete()
             ? response()->json(null, 200, [], JSON_NUMERIC_CHECK)

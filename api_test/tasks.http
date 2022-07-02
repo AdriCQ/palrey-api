@@ -1,0 +1,16 @@
+### index
+GET /api/tasks HTTP/1.1
+Host: {{ host }}
+Authorization: {{ token }}
+
+
+### store
+POST /api/tasks HTTP/1.1
+Host: {{ host }}
+Authorization: {{ token }}
+
+{
+  "type": "Reserva 1",
+  "message": "adriancapote95",
+  "date": "2022/06/2"
+}

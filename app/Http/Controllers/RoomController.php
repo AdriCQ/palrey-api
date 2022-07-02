@@ -36,7 +36,7 @@ class RoomController extends Controller
      * @param Request request
      * @return Illuminate\Http\JsonResponse
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'title' => ['required', 'string'],
@@ -60,7 +60,7 @@ class RoomController extends Controller
      * @param int $id
      * @return Illuminate\Http\JsonResponse
      */
-    public function find(int $id)
+    public function show(int $id)
     {
         $model = Room::find($id);
         $model->calendars;
@@ -70,7 +70,7 @@ class RoomController extends Controller
      * list
      * @return Illuminate\Http\JsonResponse
      */
-    public function list()
+    public function index()
     {
         return RoomResource::collection(Room::all());
     }
@@ -105,7 +105,7 @@ class RoomController extends Controller
      * @param int  $id
      * @return Illuminate\Http\JsonResponse
      */
-    public function remove(int $id)
+    public function destroy(int $id)
     {
         $model = Room::find($id);
         if (!$model) return response()->json(['No encontrado'], 400, [], JSON_NUMERIC_CHECK);
