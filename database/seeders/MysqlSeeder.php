@@ -52,7 +52,7 @@ class MysqlSeeder extends Seeder
                 'id' => $m['id'],
                 'first_name' => $m['first_name'],
                 'last_name' => $m['last_name'],
-                'email' => $m['email'],
+                'email' => $m['email'] ? $m['email'] : null,
                 'phone' => $m['phone'],
                 'address' => $m['address'],
                 'passport' => $m['passport'],
@@ -63,7 +63,7 @@ class MysqlSeeder extends Seeder
                 'airline_name' => $m['airline_name'],
                 'airline_fly' => $m['airline_fly'],
                 'room_type' => $m['room_type'],
-                'comments' => $m['comments'],
+                'comments' => $m['comments'] ? $m['comments'] : null,
             ]);
         }
         Booking::query()->insert($data);
