@@ -26,13 +26,13 @@ class MysqlSeeder extends Seeder
                 'id' => $user['id'],
                 'name' => $user['name'],
                 'email' => $user['email'],
-                'password' => $user['password'],
+                'password' => bcrypt('password'),
             ]);
         }
         User::query()->insert($data);
 
         $rooms = json_decode(Storage::get('rooms.json'), true);
-
+        $data = [];
         foreach ($rooms as $m) {
             array_push($data, [
                 'id' => $m['id'],
@@ -46,7 +46,7 @@ class MysqlSeeder extends Seeder
         Room::query()->insert($data);
 
         $bookings = json_decode(Storage::get('bookings.json'), true);
-
+        $data = [];
         foreach ($bookings as $m) {
             array_push($data, [
                 'id' => $m['id'],
@@ -69,7 +69,7 @@ class MysqlSeeder extends Seeder
         Booking::query()->insert($data);
 
         $tasks = json_decode(Storage::get('tasks.json'), true);
-
+        $data = [];
         foreach ($tasks as $m) {
             array_push($data, [
                 'id' => $m['id'],
