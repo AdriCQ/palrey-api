@@ -23,10 +23,10 @@ class MysqlSeeder extends Seeder
         $data = [];
         foreach ($users as $user) {
             array_push($data, [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'password' => $user->password,
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'password' => $user['password'],
             ]);
         }
         User::query()->insert($data);
@@ -35,12 +35,12 @@ class MysqlSeeder extends Seeder
 
         foreach ($rooms as $m) {
             array_push($data, [
-                'id' => $m->id,
-                'type' => $m->type,
-                'capacity' => $m->capacity,
-                'title' => $m->title,
-                'address' => $m->address,
-                'open' => $m->open,
+                'id' => $m['id'],
+                'type' => $m['type'],
+                'capacity' => $m['capacity'],
+                'title' => $m['title'],
+                'address' => $m['address'],
+                'open' => $m['open'],
             ]);
         }
         Room::query()->insert($data);
@@ -49,21 +49,21 @@ class MysqlSeeder extends Seeder
 
         foreach ($bookings as $m) {
             array_push($data, [
-                'id' => $m->id,
-                'first_name' => $m->first_name,
-                'last_name' => $m->last_name,
-                'email' => $m->email,
-                'phone' => $m->phone,
-                'address' => $m->address,
-                'passport' => $m->passport,
-                'date_from' => $m->date_from,
-                'date_to' => $m->date_to,
-                'currency' => $m->currency,
-                'price' => $m->price,
-                'airline_name' => $m->airline_name,
-                'airline_fly' => $m->airline_fly,
-                'room_type' => $m->room_type,
-                'comments' => $m->comments,
+                'id' => $m['id'],
+                'first_name' => $m['first_name'],
+                'last_name' => $m['last_name'],
+                'email' => $m['email'],
+                'phone' => $m['phone'],
+                'address' => $m['address'],
+                'passport' => $m['passport'],
+                'date_from' => $m['date_from'],
+                'date_to' => $m['date_to'],
+                'currency' => $m['currency'],
+                'price' => $m['price'],
+                'airline_name' => $m['airline_name'],
+                'airline_fly' => $m['airline_fly'],
+                'room_type' => $m['room_type'],
+                'comments' => $m['comments'],
             ]);
         }
         Booking::query()->insert($data);
@@ -72,11 +72,11 @@ class MysqlSeeder extends Seeder
 
         foreach ($tasks as $m) {
             array_push($data, [
-                'id' => $m->id,
-                'type' => $m->type,
-                'message' => $m->message,
-                'completed' => $m->completed,
-                'date' => $m->date,
+                'id' => $m['id'],
+                'type' => $m['type'],
+                'message' => $m['message'],
+                'completed' => $m['completed'],
+                'date' => $m['date'],
             ]);
         }
         Task::query()->insert($data);
