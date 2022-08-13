@@ -20,6 +20,7 @@ class RoomResource extends JsonResource
             'type' => $this->type,
             'open' => $this->open,
             'address' => $this->address,
+            'link' => $this->link,
             'capacity' => $this->capacity,
             'bookings' => $this->whenLoaded('bookings')
         ];

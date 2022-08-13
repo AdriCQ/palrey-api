@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('capacity')->default(1);
             $table->string('title', 64);
             $table->string('address');
+            $table->string('link')->nullable();
             $table->boolean('open')->dafault(true);
             $table->timestamps();
         });

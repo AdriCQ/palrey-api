@@ -43,7 +43,8 @@ class RoomController extends Controller
             'type' => ['required', 'in:' . implode(',', Room::$TYPES)],
             'capacity' => ['required', 'integer'],
             'open' => ['required', 'boolean'],
-            'address' => ['required', 'string']
+            'address' => ['required', 'string'],
+            'link' => ['nullable', 'string']
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toArray(), 400, [], JSON_NUMERIC_CHECK);
@@ -127,7 +128,8 @@ class RoomController extends Controller
             'type' => ['nullable', 'in:' . implode(',', Room::$TYPES)],
             'capacity' => ['nullable', 'integer'],
             'open' => ['nullable', 'boolean'],
-            'address' => ['nullable', 'string']
+            'address' => ['nullable', 'string'],
+            'link' => ['nullable', 'string']
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toArray(), 400, [], JSON_NUMERIC_CHECK);
