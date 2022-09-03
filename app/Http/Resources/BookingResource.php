@@ -33,6 +33,7 @@ class BookingResource extends JsonResource
             'room_type' => $this->room_type,
             'comments' => $this->comments,
             'room' => new RoomResource($this->room),
+            'room_id' => new RoomResource($this->room_id),
             'report_code' => $this->id . '|' . bcrypt($this->id),
         ];
     }
