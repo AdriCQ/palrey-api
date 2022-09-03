@@ -123,7 +123,7 @@ class BookingController extends Controller
             'price' => ['nullable', 'numeric'],
             'airline_name' => ['nullable', 'string', 'max:64'],
             'airline_fly' => ['nullable', 'string', 'max:32'],
-            'room_type' => ['nullable', 'string', 'max:32'],
+            'room_id' => ['nullable', 'integer'],
             'comments' => ['nullable', 'string'],
         ]);
         if ($validator->fails()) {
@@ -137,6 +137,8 @@ class BookingController extends Controller
             $validator['date_to'] = Carbon::make($validator['date']['to']);
             unset($validator['date']);
         }
+        if(isset($validator['room_id']) && ! Room::find($validator['room_id']))
+            return response()->json(['Habitacion no encontrada'], 400, [], JSON_NUMERIC_CHECK);
         if ($model->update($validator)) {
             $generatedTask = Task::getFromBooking($model);
             $task = Task::query()->where('type', 'Reserva #' . $model->id)->first();

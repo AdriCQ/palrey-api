@@ -27,6 +27,31 @@ Authorization: {{token}}
   "comments": "Comentario"
 }
 
+
+### UPDATE
+PATCH /api/bookings/1 HTTP/1.1
+Host: {{ host }}
+Authorization: {{token}}
+
+{
+  "first_name": "Adrian",
+  "last_name": "capote",
+  "email": "acq95@nauta.cu",
+  "phone": "53336521",
+  "address": "Calle silencio #32",
+  "passport": "656165465",
+  "date": {
+    "from": "2022/06/09",
+    "to": "2022/06/19"
+  },
+  "currency": "USD",
+  "price": 250,
+  "airline_name": "Aur",
+  "airline_fly": "22",
+  "room_id": 2,
+  "comments": "Comentario"
+}
+
 ### GET REPORT
 GET /api/bookings/report HTTP/1.1
 Host: {{ host }}
