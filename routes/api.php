@@ -1,19 +1,45 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+/**
+ * -----------------------------------------
+ *	No auth Routes
+ * -----------------------------------------
+ */
+Route::post('users/login', [UserController::class, 'login']);
+Route::get('bookings/report', [BookingController::class, 'findByReportCode']);
+/**
+ * -----------------------------------------
+ *	Require Auth Routes
+ * -----------------------------------------
+ */
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    /**
+     * -----------------------------------------
+     *	Bookings Routes
+     * -----------------------------------------
+     */
+    Route::apiResource('bookings', BookingController::class);
+    /**
+     * -----------------------------------------
+     *	Rooms Routes
+     * -----------------------------------------
+     */
+    Route::post('rooms/available', [RoomController::class, 'listAvailable']);
+    Route::get('rooms/{id}/available', [RoomController::class, 'available']);
+    Route::apiResource('rooms', RoomController::class);
+    /**
+     * -----------------------------------------
+     *	Tasks Routes
+     * -----------------------------------------
+     */
+    Route::get('tasks/all', [TaskController::class, 'all']);
+    Route::apiResource('tasks', TaskController::class);
 });

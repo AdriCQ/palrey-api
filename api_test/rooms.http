@@ -1,0 +1,41 @@
+### GET
+GET /api/rooms HTTP/1.1
+Host: {{ host }}
+Authorization: {{token}}
+
+### CREATE
+POST /api/rooms HTTP/1.1
+Host: {{ host }}
+Authorization: {{token}}
+
+{
+  "title": "Doble",
+  "type": "Doble",
+  "capacity": 2,
+  "open": true,
+  "address": "Mi Address"
+}
+
+### Available
+GET /api/rooms/available HTTP/1.1
+Host: {{ host }}
+Authorization: {{token}}
+
+{
+  "date": {
+    "from": "2022/06/18",
+    "to": "2022/06/22"
+  }
+}
+
+### Available
+GET /api/rooms/2/available HTTP/1.1
+Host: {{ host }}
+Authorization: {{token}}
+
+{
+  "date": {
+    "from": "2022/06/18",
+    "to": "2022/06/22"
+  }
+}
