@@ -63,7 +63,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return BookingResource::collection(Booking::query()->orderByDesc('id')->get());
+        return BookingResource::collection(Booking::query()->orderByDesc('id')->simplePaginate(15));
     }
 
     /**
